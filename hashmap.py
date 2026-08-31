@@ -1,3 +1,9 @@
+"""
+Structure of comments:
+Function description.
+Time complexity O()
+"""
+
 class HashMap:
     # Initializes an empty hash map with specified capacity and bucket array.
     # Time Complexity: O(capacity)
