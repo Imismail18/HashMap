@@ -14,22 +14,24 @@ class HashMap:
 
     # Returns the number of key-value pairs currently in the hash map.
     # Time Complexity: O(1)
-    def __len__(self):
-        return self.size
+    def __len__(self): return self.size
+
+    # Returns an iterator over all key-value pairs in the hash map.
+    # Time Complexity: O(n)
+    def __iter__(self): 
+        for bucket in self.buckets: yield from bucket
 
     # Checks if a key exists in the hash map. Returns True if key exists, False otherwise.
     # Time Complexity: O(1) average, O(n) worst case (where n is bucket size)
     def __contains__(self, item):
         index = self._hash_function(item)
         bucket = self.buckets[index]
-
         
         return any(k == item or v == item for k, v in bucket)
 
     # Returns a string representation of the hash map showing all key-value pairs.
     # Time Complexity: O(n) - where n is the total number of entries
-    def __repr__(self):
-        return str(self.items())
+    def __repr__(self): return str(self.items())
 
     # Inserts or updates a key-value pair in the hash map.
     # Time Complexity: O(1) average, O(n) worst case (where n is bucket size)
@@ -41,6 +43,7 @@ class HashMap:
             if k == key:
                 bucket[i] = (key, value)
                 break
+
         else: 
             bucket.append((key, value))  
             self.size += 1
@@ -67,23 +70,19 @@ class HashMap:
                 self.size -= 1
                 break
 
-        else:
-            raise KeyError("Key not found!")
+        else: raise KeyError("Key not found!")
 
     # Returns a list of all keys in the hash map.
     # Time Complexity: O(n) - where n is the total number of entries
-    def keys(self):
-        return [k for bucket in self.buckets for k, _ in bucket]
+    def keys(self): return [k for bucket in self.buckets for k, _ in bucket]
 
     # Returns a list of all values in the hash map.
     # Time Complexity: O(n) - where n is the total number of entries
-    def values(self):
-        return [v for bucket in self.buckets for _, v in bucket]
+    def values(self): return [v for bucket in self.buckets for _, v in bucket]
 
     # Returns a list of all key-value pairs (tuples) in the hash map.
     # Time Complexity: O(n) - where n is the total number of entries
-    def items(self):
-        return [(k, v) for bucket in self.buckets for k, v in bucket]
+    def items(self): return [(k, v) for bucket in self.buckets for k, v in bucket]
 
     # Computes the hash value for a given key to determine bucket index.
     # Time Complexity: O(k) - where k is the length of the key string
@@ -91,8 +90,7 @@ class HashMap:
         key_string = str(key)
         hash_result = 0
 
-        for c in key_string:
-            hash_result = ((hash_result * 31) + ord(c)) % self.capacity
+        for c in key_string: hash_result = ((hash_result * 31) + ord(c)) % self.capacity
         return hash_result
 
     # Searches for one or multiple keys in the hash map.
@@ -107,15 +105,15 @@ class HashMap:
 
     #Checks if the hash map is empty. Returns True if empty, False otherwise.
     #Time complexity: O(1)
-    def is_empty(self):
-        return self.size == 0
-
-    
+    def is_empty(self): return self.size == 0
 
 
 
 
 if __name__ == "__main__":
+    print("==" * 30, "\nHash Map:\nBeginning:\n", "__" * 30)
+    print()
+
     import uuid
     import matplotlib.pyplot as plt
 
@@ -154,4 +152,11 @@ if __name__ == "__main__":
     print(HM.is_empty())
 
     print(HM.buckets)
+
+    for i in HM: print(i)
+
+    print("==" * 30, "\nHash Map - End\n")
+    print()
+
+
 
