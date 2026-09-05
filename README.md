@@ -132,13 +132,12 @@ mappings.put("USA", "Washington DC")
 mappings.put("France", "Paris")
 mappings.put("Japan", "Tokyo")
 ```
-
 ## Project Structure
 
 ```text
-Stack/
-├── hashmap.py
-├── README.md
+📂 Hashmap/
+├── 📄 hashmap.py
+├── 📄 README.md
 ```
 
 ## Contributing
