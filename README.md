@@ -133,6 +133,14 @@ mappings.put("France", "Paris")
 mappings.put("Japan", "Tokyo")
 ```
 
+## Project Structure
+
+```text
+Stack/
+├── hashmap.py
+├── README.md
+```
+
 ## Contributing
 
 Feel free to fork this repository and submit pull requests for improvements or optimizations.
